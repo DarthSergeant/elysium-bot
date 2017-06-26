@@ -26,12 +26,6 @@ def webhook():
     num = random.randint(0,len(satania)-1)
     msg = satania[num]
     send_message(msg)
-  if data['text'] == 'lasagna':
-    msg = 'failure'
-    send_message(msg)
-  if data['name'] != 'Lunar Bot':
-    msg = '{}, you sent "{}".'.format(data['name'], data['text'])
-    send_message(msg)
 
 #########################################
   return "ok", 200
