@@ -3,8 +3,7 @@
 import os
 import sys
 import json
-import random
-import time
+import random          
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from flask import Flask, request
@@ -24,9 +23,13 @@ def webhook():
   log('Recieved {}'.format(data))
 
 #############################################
+  if "no" in data['text']:
+    msg = "no u"
+    send_message(msg)
   if data['text'] == '!lasagna':
     num = random.randint(0,len(satania)-1)
     msg = satania[num]
+    send_message(msg)
 
 
 #########################################
