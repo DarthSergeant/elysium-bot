@@ -19,32 +19,22 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def webhook():
-    data = request.get_json()
-    log('Recieved {}'.format(data))
-    sentence = data['text']
+  data = request.get_json()
+  log('Recieved {}'.format(data))
+  sentence = data['text']
 
-    if data['name'] != 'Satania Bot':
-        if "not" not in sentence.lower():
-            if "no" in sentence.lower():
-               msg = "no u"
-               send_message(msg)
-        if "911" in data['text']:
+#############################################
+  if data['name'] != 'Satania Bot':
+    if "no" in sentence.lower():
+           msg = "no u"
+           send_message(msg)
+    if "911" in data['text']:
            msg = '911'
            send_message(msg)
-    if "league" in sentence.lower():
-        msg = "No"
-        send_message(msg)
-    if "awoo" in sentence.lower():
-        msg = "awoo"
-        send_message(msg)
-    if "fite me" in sentence.lower():
-        selection = random.randint(0,10)
-        if selection < 4:
-            msg = "I'll keel you"
-            send_message(msg)
-        else:
-            msg = "fite me"
-            send_message(msg)
+  if data['text'] == '!lasagna':
+    num = random.randint(0,len(satania)-1)
+    msg = satania[num]
+    send_message(msg)
 
 
 #########################################
