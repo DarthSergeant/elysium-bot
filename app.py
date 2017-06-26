@@ -24,17 +24,17 @@ def webhook():
   log('Recieved {}'.format(data))
 
 #############################################
-    if data['name'] != 'Satania Bot':
-           if "no" or "No" in data['text']:
-               msg = "no u"
-               send_message(msg)
-           if "911" in data['text']:
-               msg = '911'
-               send_message(msg)
-           if "fite me" in data['text']
-               msg = 'fite me'
-               send_message(msg)
-  if data['text'] == '!lasagna':
+if data['name'] != 'Satania Bot':
+    if "no" or "No" in data['text']:
+        msg = "no u"
+        send_message(msg)
+    if "911" in data['text']:
+        msg = '911'
+        send_message(msg)
+    if "fite me" in data['text']
+        msg = 'fite me'
+        send_message(msg)
+if data['text'] == '!lasagna':
     num = random.randint(0,len(satania)-1)
     msg = satania[num]
     send_message(msg)
@@ -55,4 +55,4 @@ def send_message(msg):
   
 def log(msg):
   print(str(msg))
-  sys.stdout.flush()
+sys.stdout.flush()
