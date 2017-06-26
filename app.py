@@ -21,10 +21,11 @@ app = Flask(__name__)
 def webhook():
   data = request.get_json()
   log('Recieved {}'.format(data))
+  sentence = data['text']
 
 #############################################
   if data['name'] != 'Satania Bot':
-    if "no" in data['text']:
+    if "no" in sentence.lower():
            msg = "no u"
            send_message(msg)
     if "911" in data['text']:
