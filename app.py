@@ -15,13 +15,10 @@ def webhook():
   log('Recieved {}'.format(data))
 
   # We don't want to reply to ourselves!
-  if data['text'] == '!':
+  if data['text'] == 'value':
     msg = "ok"
     send_message(msg)
-  else: 
-    msg = "no"
-    send_message(msg)
-    
+
   return "ok", 200
 
 def send_message(msg):
