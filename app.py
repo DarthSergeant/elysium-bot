@@ -31,6 +31,9 @@ satania = ['https://i.imgur.com/a0c99Xy.jpg', 'http://livedoor.blogimg.jp/golden
   if data['text'] == 'lasagna':
     msg = 'failure'
     send_message(msg)
+  if data['name'] != 'Lunar Bot':
+    msg = '{}, you sent "{}".'.format(data['name'], data['text'])
+    send_message(msg)
 
 #########################################
   return "ok", 200
