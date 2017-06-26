@@ -24,12 +24,12 @@ satania = ['https://i.imgur.com/a0c99Xy.jpg', 'http://livedoor.blogimg.jp/golden
           ]
            
            
-  
-  
-  
   if data['text'] == '!lasagna':
     num = random.randint(0,len(satania)-1)
     msg = satania[num]
+    send_message(msg)
+  if data['text'] == 'lasagna':
+    msg = 'failure'
     send_message(msg)
 
 #########################################
