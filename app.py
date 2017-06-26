@@ -24,7 +24,7 @@ def webhook():
   log('Recieved {}'.format(data))
 
 #############################################
-  if data['name'] != 'Satania Bot':
+  #if data['name'] != 'Satania Bot':
     if "no" in data['text']:
            msg = "no u"
            send_message(msg)
