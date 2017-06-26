@@ -19,11 +19,10 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def webhook():
-  data = request.get_json()
-  log('Recieved {}'.format(data))
-  sentence = data['text']
+    data = request.get_json()
+    log('Recieved {}'.format(data))
+    sentence = data['text']
 
-#############################################
     if data['name'] != 'Satania Bot':
         if "not" not in sentence.lower():
             if "no" in sentence.lower():
