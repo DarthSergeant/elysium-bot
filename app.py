@@ -9,7 +9,7 @@ from urllib.request import Request, urlopen
 from flask import Flask, request
 
 satania = ['https://i.imgur.com/a0c99Xy.jpg',' https://i.imgur.com/CYrJCal.jpg', 'https://i.imgur.com/dbNDYcx.jpg', 
-           'https://i.imgur.com/bhnECWl.jpg', 'https://i.imgur.com/gUcWy4j.jpg', 'https://i.reddituploads.com/6849d19c91e94b7f92f15bd404567247?fit=max&h=1536&w=1536&s=d388f9eb7d4a3fa42dc8b6191d55e153',
+           'https://i.imgur.com/bhnECWl.jpg', 'https://i.imgur.com/gUcWy4j.jpg',
            'https://i.ytimg.com/vi/fjbxTE4bx4k/maxresdefault.jpg'
           ]
            
@@ -23,11 +23,14 @@ def webhook():
   log('Recieved {}'.format(data))
 
 #############################################
-           
+  if "no" in data['text']:
+    msg = "no u"
+    send_message(msg)
   if data['text'] == '!lasagna':
     num = random.randint(0,len(satania)-1)
     msg = satania[num]
     send_message(msg)
+
 
 #########################################
   return "ok", 200
