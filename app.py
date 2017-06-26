@@ -24,8 +24,6 @@ def webhook():
   log('Recieved {}'.format(data))
 
 #############################################
-  if data['text'] = 'shut up' or "Shut up":
-           time.sleep(30)
   if data['name'] != 'Satania Bot':
     if "no" or "No" in data['text']:
            msg = "no u"
