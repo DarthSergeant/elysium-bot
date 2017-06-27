@@ -23,7 +23,7 @@ def webhook():
   sentence = data['text']
 
 #############################################
-  if data['name'] != 'Lunar Bot':
+  if data['name'] != 'Satania Bot':
     if "no" in sentence.lower():
            msg = "no u"
            send_message(msg)
