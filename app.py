@@ -12,8 +12,7 @@ satania = ['https://i.imgur.com/a0c99Xy.jpg',' https://i.imgur.com/CYrJCal.jpg',
            'https://i.imgur.com/bhnECWl.jpg', 'https://i.imgur.com/gUcWy4j.jpg',
            'https://i.ytimg.com/vi/fjbxTE4bx4k/maxresdefault.jpg'
           ]
-           
-
+negatives = ['cannot', 'not', 'knot', 'annoyed', 'annoy', 'annoying']
 
 app = Flask(__name__)
 
@@ -24,15 +23,28 @@ def webhook():
   sentence = data['text']
 
 #############################################
-  if data['name'] != 'Satania Bot':
+  if data['name'] != 'Lunar Bot':
     if "no" in sentence.lower():
            msg = "no u"
            send_message(msg)
     if "911" in data['text']:
-           msg = '911'
+            msg = '911'
+            send_message(msg)
+    if "awoo" in sentence.lower():
+           msg = 'awoo'
            send_message(msg)
-  if data['text'] == '!lasagna':
-    num = random.randint(0,len(satania)-1)
+    if 'fite me' in sentence.lower():
+           msg = 'fite me'
+           send_message(msg)
+  if "league" in sentence.lower():
+            msg = 'No'
+            send_message(msg)
+  if "shut up" in sentence.lower():
+      msg = "pls no bulli"
+      send_message(msg)
+  
+  if sentence == '!lasagna':
+    num = random.randint(0,len(satania))
     msg = satania[num]
     send_message(msg)
 
