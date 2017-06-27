@@ -9,7 +9,8 @@ from urllib.request import Request, urlopen
 from flask import Flask, request
 
 from database.cat_facts import catfacts
-from database.lasagna import lasagna 
+from database.lasagna import lasagna
+from database.reactions import reaction
 
 negatives = ['cannot', 'not', 'knot', 'annoyed', 'annoy', 'annoying']
 
@@ -46,6 +47,10 @@ def webhook():
      num = ((random.randint(0,19))+1)
      msg = num
      send_message(msg)
+  if sentence == '!roll6':
+     num = ((random.randint(0,5))+1)
+     msg = num
+     send_message(msg)
   if sentence == '!lasagna':
     num = random.randint(0,(len(lasagna)-1))
     msg = lasagna[num]
@@ -53,6 +58,18 @@ def webhook():
   if sentence == '!catfacts':
     num = random.randint(0, (len(catfacts)-1))
     msg = catfacts[num]
+    send_message(msg)
+  if sentence == '!thanks':
+    msg = reaction[0]
+    send_message(msg)
+  if sentence == '!dog':
+    msg = reaction[1]
+    send_message(msg)
+  if sentence == '!confuse':
+    msg = reaction[2]
+    send_message(msg)
+  if sentence == '!stop':
+    msg = reaction[3]
     send_message(msg)
 
 
