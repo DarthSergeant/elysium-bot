@@ -3,15 +3,14 @@
 import os
 import sys
 import json
-import random          
+import random
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from flask import Flask, request
 
-satania = ['https://i.imgur.com/a0c99Xy.jpg',' https://i.imgur.com/CYrJCal.jpg', 'https://i.imgur.com/dbNDYcx.jpg', 
-           'https://i.imgur.com/bhnECWl.jpg', 'https://i.imgur.com/gUcWy4j.jpg',
-           'https://i.ytimg.com/vi/fjbxTE4bx4k/maxresdefault.jpg'
-          ]
+from database.cat_facts import catfacts
+from database.lasagna import lasagna 
+
 negatives = ['cannot', 'not', 'knot', 'annoyed', 'annoy', 'annoying']
 
 app = Flask(__name__)
@@ -42,10 +41,18 @@ def webhook():
   if "shut up" in sentence.lower():
       msg = "pls no bulli"
       send_message(msg)
-  
+#Commands
+  if sentence == '!roll20':
+     num = ((random.randint(0,19))+1)
+     msg = num
+     send_message(msg)
   if sentence == '!lasagna':
-    num = random.randint(0,len(satania))
-    msg = satania[num]
+    num = random.randint(0,(len(lasagna)-1))
+    msg = lasagna[num]
+    send_message(msg)
+  if sentence == '!catfacts':
+    num = random.randint(0, (len(catfacts)-1))
+    msg = catfacts[num]
     send_message(msg)
 
 
