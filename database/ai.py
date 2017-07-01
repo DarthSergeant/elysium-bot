@@ -1,7 +1,7 @@
 import random
 from database.cat_facts import catfacts
-from database.lasagna import lasagna
 from database.reactions import reaction
+from database.images import cruise, lasagna
 #Make this one database
 
 bulli = ['nerd', 'shut up', 'kys', 'nurd', 'loser', 'git gud', 'noob', 'newb', 'n00b', 'stupid', 'idiot', 'dumb', 'dum',
@@ -19,19 +19,19 @@ def create_response(sentence):
                 msg = "no u"
     if "911" in sentence:
         NUMBER+=1
-        if NUMBER%3 == 0:
+        if NUMBER%2 == 0:
                 msg = '911'
     if "awoo" in sentence:
         NUMBER+=1
-        if NUMBER%3 == 0:
+        if NUMBER%2 == 0:
                 msg = "Awooo"
     if 'fite' in sentence:
         NUMBER+=1
-        if NUMBER%3 == 0:
+        if NUMBER%2 == 0:
                 msg = "fite me"
     if 'tulta' in sentence:
         NUMBER+=1
-        if NUMBER%3 == 0:
+        if NUMBER%2 == 0:
                 msg = 'tulta'
         
     #Responses
@@ -41,7 +41,7 @@ def create_response(sentence):
         msg = "pls no bulli"
     if 'league' in sentence:
         msg = 'No, David.'
-    if len(sentence) > 170:
+    if len(sentence) > 220:
         msg = "lol do you really expect me to read that?"
     
     #Disable Response
@@ -61,6 +61,9 @@ def create_response(sentence):
     if sentence == '!lasagna':
         num = random.randint(0,(len(lasagna)-1))
         msg = lasagna[num]
+    if sentence == '!cruise':
+        num = random.randint(0,(len(cruise)-1))
+        msg = cruise[num]
     if sentence == '!catfacts':
         num = random.randint(0, (len(catfacts)-1))
         msg = catfacts[num]
@@ -78,5 +81,11 @@ def create_response(sentence):
         msg = reaction[5]
     if sentence == '!whatever':
         msg = reaction[6]
-    
+    if sentence == '!weeb':
+        msg = reaction[7]
+    if sentence == '!wth':
+        msg = reaction[8]
+    if sentence == '!shark':
+        msg = reaction[9]
+
     return msg
