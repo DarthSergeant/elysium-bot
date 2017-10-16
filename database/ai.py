@@ -6,6 +6,13 @@ from database.images import cruise, lasagna
 
 bulli = ['nerd', 'shut up', 'kys', 'nurd', 'loser', 'git gud', 'noob', 'newb', 'n00b', 'stupid', 'idiot', 'dumb', 'dum',
         'shut it', 'up shut', 'idot', 'ideot', 'baka', 'retard']
+   
+#8 Ball
+eight_ball = ['It is certain', ' It is decidedly so', 'Without a doubt', 'Yes definitely', 'You may rely on it',
+              'As I see it, yes', 'Most likely', 'Outlook good', 'Yes', 'Signs point to yes',
+              'Reply hazy try again', 'Ask again later', 'Better not tell you now', 'Cannot predict now',
+              'Concentrate and ask again', 'Dont count on it', 'My reply is no', 'My sources say no',
+              'Outlook not so good', 'Very doubtful']
 
 NUMBER = 0
 def create_response(sentence):
@@ -49,7 +56,7 @@ def create_response(sentence):
         msg = {}    
 
     #Commands
-    if  sentence == '!8ball':
+    if  '!8ball' in sentence:
         num = random.randint(0, (len(eight_ball)-1))
         msg = eight_ball[num]
     if sentence == '!count':
