@@ -49,7 +49,7 @@ def create_response(sentence):
         msg = {}    
 
     #Commands
-    if "!8ball" in sentence:
+    if  sentence == '!8ball':
         num = random.randint(0, (len(eight_ball)-1))
         msg = eight_ball[num]
     if sentence == '!count':
