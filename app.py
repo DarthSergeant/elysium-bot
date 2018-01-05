@@ -16,7 +16,7 @@ def webhook():
   name = data['name']
   parse = data['text']
   sentence = parse.lower()
-  response = create_response(sentence, name)
+  response = create_response(sentence, name, parse)
   if response:
     if data['name'] != "Satania Bot":
       send_message(response)
