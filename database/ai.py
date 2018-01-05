@@ -21,7 +21,7 @@ def create_response(sentence, name):
     
 
     #Name Based
-    if "Nondiverse" in sentence:
+    if "Nondiverse" in name:
         msg = "nerd"
     #Limited Responses
     if "no" in sentence:
