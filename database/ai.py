@@ -22,8 +22,7 @@ def create_response(sentence, name, parse):
 
     #Name Based
     if "IFTTT" in name:
-        echo = parse
-        msg = echo
+        msg = parse
     #Limited Responses
     if "no" in sentence:
         NUMBER+=1
