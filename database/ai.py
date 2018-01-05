@@ -15,14 +15,15 @@ eight_ball = ['It is certain', ' It is decidedly so', 'Without a doubt', 'Yes de
               'Outlook not so good', 'Very doubtful']
 
 NUMBER = 0
-def create_response(sentence, name):
+def create_response(sentence, name, parse):
     global NUMBER
     msg = {}
     
 
     #Name Based
-    if "Nondiverse" in name:
-        msg = "nerd"
+    if "IFTTT" in name:
+        echo = parse
+        msg = echo
     #Limited Responses
     if "no" in sentence:
         NUMBER+=1
