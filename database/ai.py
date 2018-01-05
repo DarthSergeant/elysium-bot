@@ -19,7 +19,6 @@ def create_response(sentence, name, parse):
     global NUMBER
     msg = {}
     
-
     #Name Based
     if "IFTTT" in name:
         msg = parse
