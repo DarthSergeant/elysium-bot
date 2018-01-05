@@ -13,11 +13,12 @@ app = Flask(__name__)
 def webhook():
   data = request.get_json()
   log('Recieved {}'.format(data))
+  name = data['name']
   parse = data['text']
   sentence = parse.lower()
   response = create_response(sentence)
   if response:
-    if data['name'] != "Satania Bot":
+    if name != "Satania Bot":
       send_message(response)
   return "ok", 200
 
