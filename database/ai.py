@@ -12,7 +12,7 @@ eight_ball = ['It is certain', ' It is decidedly so', 'Without a doubt', 'Yes de
               'As I see it, yes', 'Most likely', 'Outlook good', 'Yes', 'Signs point to yes',
               'Reply hazy try again', 'Ask again later', 'Better not tell you now', 'Cannot predict now',
               'Concentrate and ask again', 'Dont count on it', 'My reply is no', 'My sources say no',
-              'Outlook not so good', 'Very doubtful']
+              'Outlook not so good', 'Very doubtful', 'You''re an idiot', 'Never ask me anything ever again']
 
 NUMBER = 0
 def create_response(sentence, name, parse):
