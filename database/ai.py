@@ -65,10 +65,10 @@ def create_response(sentence, name, parse):
     if sentence == '!count':
         NUMBER +=1
         msg = NUMBER
-    if sentence == '!roll20':
+    if '!roll20' in sentence:
         num = ((random.randint(0,19))+1)
         msg = num
-    if sentence == '!roll6':
+    if '!roll6' in sentence:
         num = ((random.randint(0,5))+1)
         msg = num
     if sentence == '!lasagna':
