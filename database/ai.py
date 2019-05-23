@@ -23,10 +23,15 @@ def create_response(sentence, name, parse):
 			else:
 				num = random.randint(0, (len(eight_ball)-1))
 				msg = eight_ball[num]
-	if "save" in sentence:
+	if "test" in sentence:
 		f = open('saved.txt','r')
 		message = f.read()
 		msg =message
 		f.close()
+	if "rewrite" in sentence:
+		f = open('saved.txt','a')
+		f.write('\n' + 'hello world')
+		f.close()
+		msg = 'Completed'
 	time.sleep(1)
 	return msg
