@@ -23,7 +23,7 @@ def create_response(sentence, name, parse):
 					msg = 'Give me a : before the choices'
 				else:		
 					split = sentence.split(":"):
-					msg = split[1]
+					msg = split
 			else:
 				num = random.randint(0, (len(eight_ball)-1))
 				msg = eight_ball[num]
