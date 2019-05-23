@@ -1,4 +1,5 @@
 import random
+import time
 
 #8 Ball
 eight_ball = ['It is certain', ' It is decidedly so', 'Without a doubt', 'Yes definitely', 'You may rely on it',
@@ -15,9 +16,10 @@ def create_response(sentence, name, parse):
 		if "?" in sentence:
 			if any(word in sentence for word in five_ws):
 				msg = "Your w words confused me."
-			elif "or" in sentence:
+			elif " or " in sentence:
 				msg = "Picking options is difficult.  Ill get back to you on that."
 			else:
 				num = random.randint(0, (len(eight_ball)-1))
 				msg = eight_ball[num]
+	time.sleep(1)
 	return msg
