@@ -19,13 +19,9 @@ def create_response(sentence, name, parse):
 			if any(word in sentence for word in five_ws):
 				msg = "Your w words confused me."
 			elif " or " in sentence:
-				split = sentence.split("or")
-				
-					msg = 'Give me a : before the choices'
-				else:		
-					split = sentence.split(" ")
-					divider = split.index('or')
-					msg = divider
+				split = sentence.split(" ")
+				divider = split.index('or')
+				msg = divider
 			else:
 				num = random.randint(0, (len(eight_ball)-1))
 				msg = eight_ball[num]
