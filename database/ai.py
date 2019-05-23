@@ -10,9 +10,11 @@ eight_ball = ['It is certain', ' It is decidedly so', 'Without a doubt', 'Yes de
 
 five_ws = ['who', 'what', 'when', 'where', 'why', 'how']
 
+bot_tags = ['@elysia', '@ely']
+
 def create_response(sentence, name, parse):
 	msg = {}
-	if "@elysia" in sentence:
+	if any(word in sentence for word in bot_tags):
 		if "?" in sentence:
 			if any(word in sentence for word in five_ws):
 				msg = "Your w words confused me."
@@ -21,5 +23,10 @@ def create_response(sentence, name, parse):
 			else:
 				num = random.randint(0, (len(eight_ball)-1))
 				msg = eight_ball[num]
+	if "save" in sentence:
+		f = open('saved.txt','r')
+		message = f.read()
+		msg =message
+		f.close()
 	time.sleep(1)
 	return msg
