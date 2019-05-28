@@ -10,7 +10,7 @@ eight_ball = ['It is certain', ' It is decidedly so', 'Without a doubt', 'Yes de
 
 five_ws = ['who', 'what', 'when', 'where', 'why', 'how']
 
-bot_tags = ['@elysia', '@ely']
+bot_tags = ['@elysia', '@ely', 'ely', 'elysia', ',,']
 
 def create_response(sentence, name, parse):
 	msg = {}
@@ -21,7 +21,9 @@ def create_response(sentence, name, parse):
 			elif " or " in sentence:
 				split = sentence.split(" ")
 				divider = split.index('or')
-				msg = divider
+				choices = [divider-1, divider+1]
+				selection = random.randint(0,1)
+				msg = choices[selection]
 			else:
 				num = random.randint(0, (len(eight_ball)-1))
 				msg = eight_ball[num]
