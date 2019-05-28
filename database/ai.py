@@ -16,14 +16,14 @@ def create_response(sentence, name, parse):
 	msg = {}
 	if any(word in sentence for word in bot_tags):
 		if "?" in sentence:
-			if any(word in sentence for word in five_ws):
-				msg = "Your w words confused me."
-			elif " or " in sentence:
+			if " or " in sentence:
 				sentence_list = sentence.split(" ") #makes each word a list item
 				divider_word = sentence_list.index('or')
 				choices = [sentence_list[divider_word-1], sentence_list[divider_word+1]]
 				selection = random.randint(0,1)
 				msg = choices[selection]
+			elif any(word in sentence for word in five_ws):
+				msg = "Your w words confused me."
 			else:
 				num = random.randint(0, (len(eight_ball)-1))
 				msg = eight_ball[num]
