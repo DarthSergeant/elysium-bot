@@ -19,9 +19,9 @@ def create_response(sentence, name, parse):
 			if any(word in sentence for word in five_ws):
 				msg = "Your w words confused me."
 			elif " or " in sentence:
-				split = sentence.split(" ")
-				divider = split.index('or')
-				choices = [divider-1, divider+1]
+				sentence_list = sentence.split(" ") #makes each word a list item
+				divider_word = sentence_list.index('or')
+				choices = [sentence_list[divider_word-1], sentence_list[divider_word+1]]
 				selection = random.randint(0,1)
 				msg = choices[selection]
 			else:
