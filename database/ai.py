@@ -30,7 +30,7 @@ def create_response(sentence, name, parse):
 			else:
 				num = random.randint(0, (len(eight_ball)-1))
 				msg = eight_ball[num]
-	if "test" in sentence:
+	if "read" in sentence:
 		f = open('saved.txt','r')
 		message = f.read()
 		msg =message
