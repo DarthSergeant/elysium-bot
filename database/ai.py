@@ -17,8 +17,8 @@ def create_response(sentence, name, parse):
 	if any(word in sentence for word in bot_tags):
 		if "?" in sentence:
 			if " or " in sentence:
-				sentence.replace('?', ' ?')
-				sentence_list = sentence.split(" ") #makes each word a list item
+				seperate_questionmark = sentence.replace('?', ' ?')
+				sentence_list = seperate_questionmark.split(" ") #makes each word a list item
 				divider_word = sentence_list.index('or')
 				choices = [sentence_list[divider_word-1], sentence_list[divider_word+1]]
 				selection = random.randint(0,1)
