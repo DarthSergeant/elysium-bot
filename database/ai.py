@@ -14,7 +14,7 @@ bot_tags = ['@elysia', '@ely', 'ely', 'elysia', ',,']
 
 def create_response(sentence, name, parse):
 	msg = {}
-	if sentence == test:
+	if sentence == "test":
 		msg = "All systems are go"
 	if any(word in sentence for word in bot_tags):
 		if "?" in sentence:
