@@ -10,16 +10,21 @@ eight_ball = ['It is certain', ' It is decidedly so', 'Without a doubt', 'Yes de
 
 five_ws = ['who', 'what', 'when', 'where', 'why', 'how']
 
-bot_tags = ['@elysia', '@ely']
+bot_tags = ['@elysia', '@ely', 'ely', 'elysia', ',,']
 
 def create_response(sentence, name, parse):
 	msg = {}
 	if any(word in sentence for word in bot_tags):
 		if "?" in sentence:
-			if any(word in sentence for word in five_ws):
+			if " or " in sentence:
+				seperate_questionmark = sentence.replace('?', ' ?')
+				sentence_list = seperate_questionmark.split(" ") #makes each word a list item
+				divider_word = sentence_list.index('or')
+				choices = [sentence_list[divider_word-1], sentence_list[divider_word+1]]
+				selection = random.randint(0,1)
+				msg = choices[selection]
+			elif any(word in sentence for word in five_ws):
 				msg = "Your w words confused me."
-			elif " or " in sentence:
-				msg = "Picking options is difficult.  Ill get back to you on that."
 			else:
 				num = random.randint(0, (len(eight_ball)-1))
 				msg = eight_ball[num]
