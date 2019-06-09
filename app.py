@@ -16,7 +16,7 @@ def webhook():
   name = data['name']
   parse = data['text']
   sentence = parse.lower()
-  response = create_response(sentence, name, parse)
+  response = create_response(sentence, name)
   if response:
     if data['name'] != "Elysia":
       send_message(response)
