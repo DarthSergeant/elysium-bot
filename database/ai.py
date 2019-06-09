@@ -12,7 +12,7 @@ five_ws = ['who', 'what', 'when', 'where', 'why', 'how']
 
 bot_tags = ['@elysia', '@ely', 'ely', 'elysia', ',,']
 
-def create_response(sentence, name, parse):
+def create_response(sentence, name):
 	msg = {}
 	if sentence == "test":
 		msg = "All systems are go"
