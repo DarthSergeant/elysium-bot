@@ -12,7 +12,7 @@ five_ws = ['who', 'what', 'when', 'where', 'why', 'how']
 bot_tags = ['@elysia', '@ely', 'ely', 'elysia', ',,']
 replacement = ['you', 'a', 'an', 'the']
 
-def questions(sentence, name):
+def questions(sentence, name, parse):
 	###Question Prep###
 	seperate_questionmark = sentence.replace('?', ' ?')
 	sentence_list = seperate_questionmark.split(" ") #makes each word a list item
@@ -39,12 +39,12 @@ def questions(sentence, name):
 		msg = eight_ball[num]
 		return msg
 	
-def create_response(sentence, name):
+def create_response(sentence, name, parse):
 	msg = {}
 	if sentence == "test":
 		msg = "All systems are go"
 	if any(word in sentence for word in bot_tags):
 		if "?" in sentence:
-			msg = questions(sentence, name)
+			msg = questions(sentence, name, parse)
 			time.sleep(1)
 			return msg
