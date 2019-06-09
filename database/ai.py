@@ -43,6 +43,8 @@ def create_response(sentence, name):
     msg = {}
     if sentence == "test":
         msg = "All systems are go"
+        time.sleep(1)
+        return msg
     if any(word in sentence for word in bot_tags):
         if "?" in sentence:
             msg = questions(sentence, name)
