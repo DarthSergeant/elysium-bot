@@ -6,7 +6,6 @@ from urllib.request import Request, urlopen
 from flask import Flask, request
 
 from database.ai import create_response
-from database.ai import questions
 
 app = Flask(__name__)
 
@@ -17,7 +16,7 @@ def webhook():
   name = data['name']
   parse = data['text']
   sentence = parse.lower()
-  response = create_response(sentence, name, parse)
+  response = create_response(sentence, name)
   if response:
     if data['name'] != "Elysia":
       send_message(response)
