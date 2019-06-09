@@ -9,7 +9,6 @@ eight_ball = ['It is certain', ' It is decidedly so', 'Without a doubt', 'Yes de
               'Outlook not so good', 'Very doubtful', 'Concentrate and ask again... just kidding.  NO.']
 
 five_ws = ['who', 'what', 'when', 'where', 'why', 'how']
-
 bot_tags = ['@elysia', '@ely', 'ely', 'elysia', ',,']
 
 def create_response(sentence, name, parse):
