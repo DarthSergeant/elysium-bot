@@ -35,4 +35,3 @@ def send_message(msg):
 def log(msg):
   print(str(msg))
 sys.stdout.flush()
-
