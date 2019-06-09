@@ -50,5 +50,3 @@ def create_response(sentence, name):
             msg = questions(sentence, name)
             time.sleep(1)
             return msg
-
-
