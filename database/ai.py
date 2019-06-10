@@ -97,7 +97,7 @@ def dnd_stat_calc(refined):
     roll.sort()
     del roll[0]
     stat_value = str(sum(roll))
-    msg = ((stat_name)+':'+(stat_value))
+    msg = ((stat_name)+': '+(stat_value))
     return msg
     
 def create_response(sentence, name):
@@ -111,13 +111,12 @@ def create_response(sentence, name):
         refined = process_sentence(sentence, name)
         if any(word in sentence for word in dnd_stats):
                msg = dnd_stat_calc(refined)
-        if 'price' in sentence:
+        elif 'price' in sentence:
             msg = ge_search(refined)
-        if "?" in sentence:
+        elif "?" in sentence:
             msg = questions(refined)
-        if "roll" in sentence:
+        elif "roll" in sentence:
             msg = dice_roller(refined)
 
     time.sleep(.75)
     return msg
-       
