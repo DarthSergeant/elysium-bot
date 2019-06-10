@@ -13,7 +13,7 @@ eight_ball = ['It is certain', ' It is decidedly so', 'Without a doubt', 'Yes de
 five_ws = ['who', 'what', 'when', 'where', 'why', 'how']
 bot_tags = ['@elysia', '@ely', 'ely', 'elysia', ',,']
 replacement = ['you', 'a', 'an', 'the']
-dnd_stats = ['str', 'int', 'wis', 'cha', 'con']
+dnd_stats = ['str', 'int', 'wis', 'cha', 'con', 'dex']
 
 def process_sentence(sentence, name): #Used to create the refined variable used for processing
     seperate_comma = sentence.replace(',,', '') #,, is most common tag so this seperates it if a space is not used
