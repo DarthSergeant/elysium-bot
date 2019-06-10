@@ -1,5 +1,7 @@
 import random
 import time
+from urllib.request import Request, urlopen
+from bs4 import BeautifulSoup
 
 #8 Ball
 eight_ball = ['It is certain', ' It is decidedly so', 'Without a doubt', 'Yes definitely', 'You may rely on it',
@@ -14,7 +16,7 @@ replacement = ['you', 'a', 'an', 'the']
 #dnd_stats = ['str', 'int', 'wis', 'cha', 'con']
 
 def process_sentence(sentence, name): #Used to create the refined variable used for processing
-    seperate_comma = sentence.replace(',,', ' ,,') #,, is most common tag so this seperates it if a space is not used
+    seperate_comma = sentence.replace(',,', '') #,, is most common tag so this seperates it if a space is not used
     seperate_questionmark = seperate_comma.replace('?', ' ?') #? is another common identifier so this makes sure it doesn't get combined with the data
     sentence_list = seperate_questionmark.split(" ") #Makes sentence into a list
     remove_words = True
@@ -30,46 +32,85 @@ def process_sentence(sentence, name): #Used to create the refined variable used 
                     sentence_list = [w.replace('you', 'me') for w in sentence_list]
         else:
             remove_words = False
-        return sentence_list
-    
+    print(sentence_list)
+    return sentence_list
+
+def clean_price(price):
+    price_string = str(price)
+    price_split_1 = price_string.split(">")[1]
+    price_split_2 = price_split_1.split("<")[0]
+    price_split = price_split_2.strip()
+    return price_split
+
+def ge_search(refined):
+    print('step 1')
+    print(refined)
+    refined.remove('price')
+    print('step 2')
+    print(refined)
+    item = ' '.join(refined) #converts list back to a string
+    print(item)
+    formatted_item = item.replace(' ', '-')
+    print(formatted_item)
+    url_status = True
+    url = "https://www.ge-tracker.com/item/" + formatted_item
+    req = Request(url, headers={'User-Agent':'Mozilla/5.0'})
+    try:
+        webpage = urlopen(req).read()
+    except:
+        msg ='Cant find item'
+        url_status = False       
+    if url_status:
+        soup = BeautifulSoup(webpage, "html.parser")
+        sell_price = soup.find("td", {'id': 'item_stat_sell_price'})
+        offer_price = soup.find("td", {'id': 'item_stat_offer_price'})
+        msg = ('Sell Price' +
+               clean_price(sell_price) +
+               'Offer Price' +
+               clean_price(offer_price))
+    return msg
+
 def questions(refined):
     if "or" in refined:
         divider_word = refined.index('or')
         choices = [refined[divider_word-1], refined[divider_word+1]]
         selection = random.randint(0,1)
         msg = choices[selection]
-        return msg
     elif any(word in refined for word in five_ws):
         msg = "Your w words confused me."
-        return msg
     else:
         num = random.randint(0, (len(eight_ball)-1))
         msg = eight_ball[num]
-        return msg
+    return msg
 
 def dice_roller(refined):
     divider_word = refined.index('roll')
     number = refined[divider_word+1]
     if number.isdigit() == True:
-        msg = random.randint(0, int(number))
-        return msg
+        if int(number) > 1000000001:
+            msg = "Too high"
+        else:
+            msg = random.randint(0, int(number))
     else:
-        msg = "I only work with numerals"
-        return msg
+        msg = "I only work with positive integers"
+    return msg
 
 def create_response(sentence, name):
     msg = {}
     if sentence == "test":
         msg = "All systems are go"
-    if sentence == 'wooloo': #Temporarily removes need to use tags.  Bot will respond to everything relevant
+    elif sentence == 'wooloo': #Temporarily removes need to use tags.  Bot will respond to everything relevant
         bot_tags.append(' ')
         msg = "Tags removed."
-    if any(word in sentence for word in bot_tags):
+    elif any(word in sentence for word in bot_tags):
         refined = process_sentence(sentence, name)
+        if 'price' in sentence:
+            msg = ge_search(refined)
         if "?" in sentence:
             msg = questions(refined)
         if "roll" in sentence:
             msg = dice_roller(refined)
-    time.sleep(.75)
+
+    time.sleep(.5)
     return msg
-            
+       
