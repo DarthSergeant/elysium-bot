@@ -46,6 +46,8 @@ def ge_search(refined):
     print('step 1')
     print(refined)
     refined.remove('price')
+    if '' in refined:
+        refined.remove('')
     print('step 2')
     print(refined)
     item = ' '.join(refined) #converts list back to a string
@@ -64,10 +66,8 @@ def ge_search(refined):
         soup = BeautifulSoup(webpage, "html.parser")
         sell_price = soup.find("td", {'id': 'item_stat_sell_price'})
         offer_price = soup.find("td", {'id': 'item_stat_offer_price'})
-        msg = ('Sell Price' +
-               clean_price(sell_price) +
-               'Offer Price' +
-               clean_price(offer_price))
+        msg = ('Sell Price: '+clean_price(sell_price)+ 
+               ('\nOffer Price: ')+clean_price(offer_price))
     return msg
 
 def questions(refined):
