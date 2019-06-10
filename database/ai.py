@@ -13,7 +13,7 @@ eight_ball = ['It is certain', ' It is decidedly so', 'Without a doubt', 'Yes de
 five_ws = ['who', 'what', 'when', 'where', 'why', 'how']
 bot_tags = ['@elysia', '@ely', 'ely', 'elysia', ',,']
 replacement = ['you', 'a', 'an', 'the']
-#dnd_stats = ['str', 'int', 'wis', 'cha', 'con']
+dnd_stats = ['str', 'int', 'wis', 'cha', 'con']
 
 def process_sentence(sentence, name): #Used to create the refined variable used for processing
     seperate_comma = sentence.replace(',,', '') #,, is most common tag so this seperates it if a space is not used
@@ -32,7 +32,6 @@ def process_sentence(sentence, name): #Used to create the refined variable used 
                     sentence_list = [w.replace('you', 'me') for w in sentence_list]
         else:
             remove_words = False
-    print(sentence_list)
     return sentence_list
 
 def clean_price(price):
@@ -43,17 +42,11 @@ def clean_price(price):
     return price_split
 
 def ge_search(refined):
-    print('step 1')
-    print(refined)
     refined.remove('price')
     if '' in refined:
         refined.remove('')
-    print('step 2')
-    print(refined)
     item = ' '.join(refined) #converts list back to a string
-    print(item)
     formatted_item = item.replace(' ', '-')
-    print(formatted_item)
     url_status = True
     url = "https://www.ge-tracker.com/item/" + formatted_item
     req = Request(url, headers={'User-Agent':'Mozilla/5.0'})
@@ -66,7 +59,8 @@ def ge_search(refined):
         soup = BeautifulSoup(webpage, "html.parser")
         sell_price = soup.find("td", {'id': 'item_stat_sell_price'})
         offer_price = soup.find("td", {'id': 'item_stat_offer_price'})
-        msg = ('Sell Price: '+clean_price(sell_price)+ 
+        msg = (item+
+                ('\nSell Price: ')+clean_price(sell_price)+ 
                ('\nOffer Price: ')+clean_price(offer_price))
     return msg
 
@@ -90,11 +84,22 @@ def dice_roller(refined):
         if int(number) > 1000000001:
             msg = "Too high"
         else:
-            msg = random.randint(0, int(number))
+            msg = (random.randint(0, int(number))+1)
     else:
         msg = "I only work with positive integers"
     return msg
 
+def dnd_stat_calc(refined):
+    raw_stat_name = (set(refined).intersection(dnd_stats))
+    stat_list = list(raw_stat_name) #Converts set to list 
+    stat_name = stat_list[0] #Picks only the first stat name just incase multiples were typed in the message
+    roll = [(random.randint(0,5)+1) for n in range(4)]
+    roll.sort()
+    del roll[0]
+    stat_value = str(sum(roll))
+    msg = ((stat_name)+': '+(stat_value))
+    return msg
+    
 def create_response(sentence, name):
     msg = {}
     if sentence == "test":
@@ -104,6 +109,8 @@ def create_response(sentence, name):
         msg = "Tags removed."
     elif any(word in sentence for word in bot_tags):
         refined = process_sentence(sentence, name)
+        if any(word in sentence for word in dnd_stats):
+               msg = dnd_stat_calc(refined)
         elif 'price' in sentence:
             msg = ge_search(refined)
         elif "?" in sentence:
@@ -111,6 +118,5 @@ def create_response(sentence, name):
         elif "roll" in sentence:
             msg = dice_roller(refined)
 
-    time.sleep(.5)
+    time.sleep(.75)
     return msg
-       
