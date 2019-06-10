@@ -104,11 +104,11 @@ def create_response(sentence, name):
         msg = "Tags removed."
     elif any(word in sentence for word in bot_tags):
         refined = process_sentence(sentence, name)
-        if 'price' in sentence:
+        elif 'price' in sentence:
             msg = ge_search(refined)
-        if "?" in sentence:
+        elif "?" in sentence:
             msg = questions(refined)
-        if "roll" in sentence:
+        elif "roll" in sentence:
             msg = dice_roller(refined)
 
     time.sleep(.5)
