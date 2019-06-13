@@ -48,7 +48,6 @@ def ge_search(refined):
     item = ' '.join(refined) #converts list back to a string
     formatted_item_remove_space = item.replace(' ', '-')
     formatted_item = formatted_item_remove_space.replace('\'','-')
-    print(formatted_item)
     url_status = True
     url = "https://www.ge-tracker.com/item/" + formatted_item
     req = Request(url, headers={'User-Agent':'Mozilla/5.0'})
