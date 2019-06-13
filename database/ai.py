@@ -46,7 +46,8 @@ def ge_search(refined):
     if '' in refined:
         refined.remove('')
     item = ' '.join(refined) #converts list back to a string
-    formatted_item = item.replace(' ', '-')
+    formatted_item_remove_space = item.replace(' ', '-')
+    formatted_item = formatted_item_remove_space.replace('\'','-')
     url_status = True
     url = "https://www.ge-tracker.com/item/" + formatted_item
     req = Request(url, headers={'User-Agent':'Mozilla/5.0'})
@@ -109,7 +110,7 @@ def create_response(sentence, name):
         msg = "Tags removed."
     elif any(word in sentence for word in bot_tags):
         refined = process_sentence(sentence, name)
-        if any(word in sentence for word in dnd_stats):
+        if any(word in refined for word in dnd_stats): #Add an additional requirement
                msg = dnd_stat_calc(refined)
         elif 'price' in sentence:
             msg = ge_search(refined)
