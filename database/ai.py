@@ -13,7 +13,7 @@ eight_ball = ['It is certain', ' It is decidedly so', 'Without a doubt', 'Yes de
 five_ws = ['who', 'what', 'when', 'where', 'why', 'how']
 bot_tags = ['@elysia', '@ely', 'ely', 'elysia', ',,']
 replacement = ['you', 'a', 'an', 'the']
-dnd_stats = ['str', 'int', 'wis', 'cha', 'con']
+dnd_stats = ['str', 'int', 'wis', 'cha', 'con', 'dex']
 
 def process_sentence(sentence, name): #Used to create the refined variable used for processing
     seperate_comma = sentence.replace(',,', '') #,, is most common tag so this seperates it if a space is not used
@@ -46,7 +46,9 @@ def ge_search(refined):
     if '' in refined:
         refined.remove('')
     item = ' '.join(refined) #converts list back to a string
-    formatted_item = item.replace(' ', '-')
+    formatted_item_remove_space = item.replace(' ', '-')
+    formatted_item = formatted_item_remove_space.replace('\'','-')
+    print(formatted_item)
     url_status = True
     url = "https://www.ge-tracker.com/item/" + formatted_item
     req = Request(url, headers={'User-Agent':'Mozilla/5.0'})
@@ -109,7 +111,7 @@ def create_response(sentence, name):
         msg = "Tags removed."
     elif any(word in sentence for word in bot_tags):
         refined = process_sentence(sentence, name)
-        if any(word in sentence for word in dnd_stats):
+        if any(word in refined for word in dnd_stats): #Add an additional requirement
                msg = dnd_stat_calc(refined)
         elif 'price' in sentence:
             msg = ge_search(refined)
