@@ -105,6 +105,10 @@ def create_response(sentence, name):
     msg = {}
     if sentence == "test":
         msg = "All systems are go"
+    if sentence == "save":
+        with open('test_file.txt', 'a') as scribe:
+            scribe.write('\nBeagle')
+        msg = "Saved"
     elif sentence == 'wooloo': #Temporarily removes need to use tags.  Bot will respond to everything relevant
         bot_tags.append(' ')
         msg = "Tags removed."
